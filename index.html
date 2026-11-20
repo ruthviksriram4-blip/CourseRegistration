@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Course Registration</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        header {
+            background: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        nav {
+            background: #172554;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 30px auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .search {
+            display: block;
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 25px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: #1d4ed8;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1e40af;
+        }
+
+        footer {
+            background: #172554;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>SR University</h1>
+        <p>Online Student Course Registration System</p>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#courses">Available Courses</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="container">
+
+        <h2>Available Courses</h2>
+
+        <input
+            type="text"
+            class="search"
+            id="search"
+            placeholder="Search courses by name..."
+            onkeyup="searchCourses()"
+        >
+
+        <div class="courses" id="courses">
+
+            <div class="card">
+                <h3>Java Programming</h3>
+                <p>Learn Java fundamentals, OOP concepts and programming.</p>
+                <p><b>Duration:</b> 3 Months</p>
+                <button onclick="registerCourse('Java Programming')">
+                    Register
+                </button>
+            </div>
+
+            <div class="card">
+                <h3>Python Programming</h3>
+                <p>Learn Python basics, functions and data structures.</p>
+                <p><b>Duration:</b> 2 Months</p>
+                <button onclick="registerCourse('Python Programming')">
+                    Register
+                </button>
+            </div>
+
+            <div class="card">
+                <h3>Web Development</h3>
+                <p>Learn HTML, CSS, JavaScript and frontend development.</p>
+                <p><b>Duration:</b> 4 Months</p>
+                <button onclick="registerCourse('Web Development')">
+                    Register
+                </button>
+            </div>
+
+            <div class="card">
+                <h3>Database Management</h3>
+                <p>Learn SQL, database design and database operations.</p>
+                <p><b>Duration:</b> 3 Months</p>
+                <button onclick="registerCourse('Database Management')">
+                    Register
+                </button>
+            </div>
+
+        </div>
+
+        <h2 style="margin-top:40px;">Registered Courses</h2>
+        <ul id="registered"></ul>
+
+    </div>
+
+    <footer id="contact">
+        <p>SR University | Online Course Registration System</p>
+        <p>© 2026 All Rights Reserved</p>
+    </footer>
+
+    <script>
+        function registerCourse(course) {
+            let list = document.getElementById("registered");
+
+            let item = document.createElement("li");
+            item.textContent = course;
+
+            list.appendChild(item);
+
+            alert(course + " registered successfully!");
+        }
+
+        function searchCourses() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let cards = document.querySelectorAll(".card");
+
+            cards.forEach(function(card) {
+                let name = card.querySelector("h3").textContent.toLowerCase();
+
+                card.style.display = name.includes(input) ? "block" : "none";
+            });
+        }
+    </script>
+
+</body>
+</html>
